@@ -7,9 +7,9 @@
 <body>
 <h1>Create Worker</h1>
 <form th:action="@{/worker}" th:object="${worker}" method="post">
-  <label>Name: <input type="text" th:field="*{name}"/></label><br>
-  <label>Salary: <input type="number" step="1" th:field="*{salary}"/></label><br>
-  <button type="submit">Save</button>
+    <label>Name: <input type="text" th:field="*{name}"/></label><br>
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Ошибка в имени пользователья</span>
+    <button type="submit">Save</button>
 </form>
 </body>
 </html>

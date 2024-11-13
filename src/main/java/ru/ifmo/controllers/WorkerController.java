@@ -1,8 +1,10 @@
 package ru.ifmo.controllers;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +18,7 @@ public class WorkerController {
 
     @GetMapping("/workers")
     public String listWorkers(Model model) {
-        model.addAttribute("workers", workerService.findAll());
+        model.addAttribute("workers", workerService.getAll());
         return "workers";
     }
 
@@ -27,7 +29,11 @@ public class WorkerController {
     }
 
     @PostMapping("/worker")
-    public String saveWorker(@ModelAttribute("worker") Worker worker) {
+    public String saveWorker(@Valid @ModelAttribute("worker") Worker worker, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "create_worker";
+        }
+
         workerService.save(worker);
         return "redirect:/workers";
     }
