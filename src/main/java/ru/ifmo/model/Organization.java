@@ -4,8 +4,14 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
 @Entity
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Organization {
 
     @Id
@@ -30,54 +36,4 @@ public class Organization {
 
     @Min(1)
     private long rating;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Address getOfficialAddress() {
-        return officialAddress;
-    }
-
-    public void setOfficialAddress(Address officialAddress) {
-        this.officialAddress = officialAddress;
-    }
-
-    @Min(1)
-    public long getAnnualTurnover() {
-        return annualTurnover;
-    }
-
-    public void setAnnualTurnover(@Min(1) long annualTurnover) {
-        this.annualTurnover = annualTurnover;
-    }
-
-    public @NotNull @Min(1) Long getEmployeesCount() {
-        return employeesCount;
-    }
-
-    public void setEmployeesCount(@NotNull @Min(1) Long employeesCount) {
-        this.employeesCount = employeesCount;
-    }
-
-    public @NotNull @NotBlank String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(@NotNull @NotBlank String fullName) {
-        this.fullName = fullName;
-    }
-
-    @Min(1)
-    public long getRating() {
-        return rating;
-    }
-
-    public void setRating(@Min(1) long rating) {
-        this.rating = rating;
-    }
 }

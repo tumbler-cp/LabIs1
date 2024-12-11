@@ -1,5 +1,6 @@
 package ru.ifmo.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.ifmo.model.Person;
@@ -8,9 +9,10 @@ import ru.ifmo.repository.PersonRepository;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class PersonService {
-    @Autowired
-    private PersonRepository personRepository;
+
+    private final PersonRepository personRepository;
 
     public List<Person> getAll() {
         return personRepository.findAll();

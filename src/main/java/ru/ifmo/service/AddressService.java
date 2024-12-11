@@ -1,5 +1,6 @@
 package ru.ifmo.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.ifmo.model.Address;
@@ -8,10 +9,10 @@ import ru.ifmo.repository.AddressRepository;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class AddressService {
 
-    @Autowired
-    private AddressRepository addressRepository;
+    private final AddressRepository addressRepository;
 
     public List<Address> getAll() {
         return addressRepository.findAll();
